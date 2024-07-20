@@ -108,23 +108,23 @@ const fetchLocation = async url => {
         locationBtn.classList.add('active');
         fetchCity(city);
     } catch(err) {
+        inputField.value = "";
         console.error(err);
         showErrorMsg();
     }
 }
 
 export const findCurrLocation = () => {
-    inputField.value = 'Loading...';
-    // container.style.height = `${calcWeatherCardHeight()}px`;
-    container.classList.remove('error-active');
-    container.classList.add('active');
-    weatherContainer.style.display = 'none';
-    errorContainer.style.display = 'none';
-    loadContainer.style.display = 'flex';   
     navigator.geolocation.getCurrentPosition(async position => {
+        inputField.value = 'Loading...';
+        container.classList.remove('error-active');
+        container.classList.add('active');
+        weatherContainer.style.display = 'none';
+        errorContainer.style.display = 'none';
+        loadContainer.style.display = 'flex';   
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-        const url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${APIKey}`;       
+        const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${APIKey}`;       
         fetchLocation(url);
     });
 }
