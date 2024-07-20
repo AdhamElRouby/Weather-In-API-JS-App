@@ -1,0 +1,235 @@
+@use "./config" as *;
+@use "./animation";
+
+header {
+    position: fixed;
+    top: 0px;
+    font-family: Wittgenstein;
+    font-weight: 500;
+    color: $secondary-color;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 12px 18px;
+    img {
+        vertical-align: middle;
+        transform: translateY(-8%);
+    }
+}
+
+body {
+    background-color: $primary-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: $secondary-color;
+    width: $card-width;
+    height: $intial-height;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 32px;    
+    border-radius: 18px;
+    box-shadow: $box-shadow-std;
+    @include transition-ease;
+
+    &.active {
+        height: $weather-height;
+    }
+
+    &.error-active {
+        height: $error-height;
+    }
+
+    .search-bar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        input {
+            background: none;
+            border: none;
+            text-transform: uppercase;
+            color: $primary-color;
+            width: 80%;
+            font-size: 1.5rem;
+            font-weight: 500;
+
+            &::placeholder {
+                text-transform: capitalize;
+                color: $primary-color;
+            }
+        }
+
+        i {
+            color: $primary-color;
+            font-size: 28px;
+            margin-right: 10px;
+        }
+
+        button {
+            color: $primary-color;
+            background-color: $third-color;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 20px;
+            padding: 12px;
+            transition: all .3s ease;
+
+            &.search-btn {
+                margin-right: 6px;
+            }
+
+            &:hover {
+                color: $secondary-color;
+                background-color: $primary-color;
+            }
+
+            &.location-btn.active {
+                color: $secondary-color;
+                background-color: $primary-color;
+                cursor: default;
+            }
+        }
+
+    }
+
+    .error-container {
+        display: none;
+        margin-top: 50px;
+        text-align: center;
+
+        img {
+            width: 70%;
+        }
+
+        p {
+            margin-top: 14px;
+            color: $primary-color;
+            font-weight: 500;
+            font-size: 22px;
+        }
+    }
+    
+    .weather-container {
+        display: none;
+        margin-top: 30px;
+
+        .img-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: 60%;
+                height: auto;
+            }
+        }
+
+        .weather-main {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+            color: $primary-color;
+        
+            .temperature {
+                position: relative;
+                font-weight: 700;
+                font-size: 4rem;
+
+                span {
+                    position: absolute;
+                    font-size: 1.5rem;
+                }
+            }
+
+            .status {
+                font-weight: 500;
+                font-size: 22px;
+                text-transform: capitalize;
+            }
+        }
+
+        .weather-details {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-around;
+            color: $primary-color;
+
+            .info-container {
+                display: flex;
+                align-items: center;
+
+                i {
+                    font-size: 26px;
+                    margin-right: 10px;
+                }
+
+                .info {
+                    display: flex;
+                    flex-direction: column;
+                    font-weight: 500;
+
+                    &-number {
+                        font-size: 22px;
+                    }
+
+                    &-type {
+                        font-size: 14px;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    .load-container {
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        .lds-ring,
+        .lds-ring div {
+            box-sizing: border-box;
+        }
+        .lds-ring {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+            div {
+                box-sizing: border-box;
+                display: block;
+                position: absolute;
+                width: 64px;
+                height: 64px;
+                margin: 8px;
+                border: 8px solid $primary-color;
+                border-radius: 50%;
+                animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+                border-color: $primary-color transparent transparent transparent;
+                
+                &:nth-child(1) {
+                    animation-delay: -0.45s;
+                }
+                &:nth-child(2) {
+                    animation-delay: -0.3s;
+                }
+                &:nth-child(3) {
+                    animation-delay: -0.15s;
+                }
+            }
+        }
+    }
+}
+
+@import "./responsive";

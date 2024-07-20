@@ -1,0 +1,54 @@
+@media only screen and (max-width: 500px) {
+    .container {
+        width: 350px;
+        height: 95px;
+        padding: 24px 28px;
+
+        &.active {
+            height: 530px;
+        }
+
+        .search-bar {
+            input {
+                font-size: 20px;
+            }
+
+            i {
+                font-size: 22px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 365px) {
+    header {
+        font-size: 2.5rem;
+    }
+
+    .container {
+        width: 300px;
+
+        &.active {
+            height: 500px;
+        }
+
+        .search-bar {    
+            input {
+                font-size: 18px;
+            }
+
+            i {
+                font-size: 20px;
+            }
+    
+            button {
+                font-size: 14px;
+            }
+        }
+    
+    }
+}
