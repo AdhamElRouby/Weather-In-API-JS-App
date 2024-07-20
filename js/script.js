@@ -14,6 +14,6 @@ locationBtn.addEventListener('click', () => {
         findCurrLocation();
       } else {
         console.error("Geolocation is not supported by this browser.");
-        showErrorMsg();
+        showErrorMsg(true);
     }
 });

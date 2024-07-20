@@ -41,13 +41,18 @@ const showWeatherData = data => {
     weatherContainer.classList.add('fade-in');
 };
 
-export const showErrorMsg = () => {
+/**
+ * display error message on website
+ * @param {bool} locationError - whether the call of the function is due to inability to locate the user
+*/
+export const showErrorMsg = (locationError = false) => {
     // hide the current containers
     isWeatherOn = false;
     loadContainer.style.display = 'none';
     weatherContainer.style.display = 'none';
     weatherContainer.classList.remove('fade-in');
     // show error container
+    if(locationError) inputField.value = "";
     container.classList.remove('active');
     container.classList.add('error-active');
     errorContainer.style.display = 'block';
@@ -108,23 +113,24 @@ const fetchLocation = async url => {
         locationBtn.classList.add('active');
         fetchCity(city);
     } catch(err) {
-        inputField.value = "";
         console.error(err);
-        showErrorMsg();
+        showErrorMsg(true);
     }
 }
 
 export const findCurrLocation = () => {
+    inputField.value = 'Loading...';
+    container.classList.remove('error-active');
+    container.classList.add('active');
+    weatherContainer.style.display = 'none';
+    errorContainer.style.display = 'none';
+    loadContainer.style.display = 'flex';   
     navigator.geolocation.getCurrentPosition(async position => {
-        inputField.value = 'Loading...';
-        container.classList.remove('error-active');
-        container.classList.add('active');
-        weatherContainer.style.display = 'none';
-        errorContainer.style.display = 'none';
-        loadContainer.style.display = 'flex';   
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
         const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${APIKey}`;       
         fetchLocation(url);
+    }, () => {
+        showErrorMsg(true);
     });
 }
