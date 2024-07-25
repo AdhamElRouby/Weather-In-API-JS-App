@@ -8,7 +8,6 @@ const errorContainer = document.querySelector('.error-container');
 const loadContainer = document.querySelector('.load-container');
 
 // variables
-let isWeatherOn = false;
 
 // functions
 
@@ -47,7 +46,6 @@ const showWeatherData = data => {
 */
 export const showErrorMsg = (locationError = false) => {
     // hide the current containers
-    isWeatherOn = false;
     loadContainer.style.display = 'none';
     weatherContainer.style.display = 'none';
     weatherContainer.classList.remove('fade-in');
@@ -68,10 +66,7 @@ const fetchCity = async city => {
 
     try {
         
-        if(!isWeatherOn) {
-            isWeatherOn = true;
-        }
-        else {
+        if(container.classList.contains('active')) {
             weatherContainer.style.display = 'none';
             loadContainer.style.display = 'flex';   
         }
