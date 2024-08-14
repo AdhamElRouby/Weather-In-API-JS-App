@@ -11,7 +11,7 @@ An API weather application built with ES6 JavaScript that provides weather infor
  
 ## Features
 
-- **Seamless Integration:** Uses the Open Weather API to provide accurate weather details.
+- **Seamless Integration:** Uses the **Open Weather API** to provide accurate weather details.
 - **Smooth Animations:** Enjoy a fluid and visually appealing animation when searching for cities or locations.
 - **Instant Location Updates:** Get real-time weather for your current location with a single click.
 - **Loading Indicators:** Experience a smooth loading animation while weather data is being fetched.
