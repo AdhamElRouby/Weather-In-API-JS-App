@@ -2,6 +2,10 @@
 
 An API weather application built with ES6 JavaScript that provides weather information for any location worldwide, including your current location!
 
+<div align="center">
+ <img src="./img/demo.gif" alt="app demo">
+</div>
+
 ## Tech Stack
 
 - <img src="https://img.shields.io/badge/-HTML5-E34F26?logo=HTML5&logoColor=white&style=flat" alt="html5">
